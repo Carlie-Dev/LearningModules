@@ -40,3 +40,16 @@ for header in table.find_all('th'):
 table_data.append(headers)
 
 #Extracting rows from the table
+for row in table.find_all('tr'):
+    cells = []
+    for cell in row.find_all('td'):
+        cell_data = str(cell.text.strip())
+        #Instead of pulling a space it will pull this
+        cell_data.replace('\\xao',' ')
+        cells.append(cell_data)
+
+    if cells: #If cells is not null
+        table_data.append(cells)
+
+for row in table_data:
+    print(row)
